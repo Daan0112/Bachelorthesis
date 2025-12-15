@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{EDA and ABM Assignment: Deliverables}
+\author{[Your Name]}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Task 1: Sanity Checks \& Structure (EDA)}
+
+\textit{Goal: Describe the dataset subjects, time points, and data quality (e.g., negative values, zeros).}
+
+\subsection{Dataset Description}
+% Instruction: Write a short paragraph (5–10 lines) describing:
+% - Number of subjects
+% - Existing time points
+% - Any obvious issues (e.g., subsets always zero, missing values)
+
+[Insert Dataset Description Text Here]
+
+\subsection{Summary Table}
+% Instruction: Include a small table summarizing the dataset properties (see document/notebook).
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        Column 1 & Column 2 & Column 3 \\
+        \midrule
+        Data & Data & Data \\
+        Data & Data & Data \\
+        \bottomrule
+    \end{tabular}
+    \caption{[Insert Table Caption]}
+    \label{tab:dataset_summary}
+\end{table}
+
+\section{Task 2: Time-course Summary (EDA)}
+
+\textit{Goal: Describe the typical CD4 response over time using median curves.}
+
+\subsection{Plots: Median $\pm$ IQR}
+% Instruction:
+% - Plot 1: Median values for Tnaive, TSCM, TCM, TEMRA vs Time (0–60 days). Optional: Shaded IQR.
+% - Plot 2: (Optional) Medians at long-term (~356/365 days).
+
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{path/to/plot1.png}
+    \caption{[Median CD4 T-cell Subset Responses Over Time]}
+    \label{fig:time_course_plot}
+\end{figure}
+
+[Insert Plots Here]
+
+\subsection{Key Time Points Table}
+% Instruction: A summary table with key time points.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        Time Point & Subset & Median Value \\
+        \midrule
+        Day 1 & ... & ... \\
+        Day 22 & ... & ... \\
+        Day 43 & ... & ... \\
+        Day 365 & ... & ... \\
+        \bottomrule
+    \end{tabular}
+    \caption{[Key Time Points Summary]}
+    \label{tab:time_points}
+\end{table}
+
+\section{ABM Model Implementation}
+
+\textit{Goal: Build a day-by-day model of the CD4 response.}
+
+\subsection{Model Description}
+% Instruction: Define the model and parameters. The python notebook should contain the code.
+
+[Insert Model Description / Reference to Python Code Here]
+
+\section{ABM Simulation Results}
+
+\textit{Goal: reproduce the shape of the median curves from the EDA.}
+
+\subsection{Model Trajectories}
+% Instruction: One figure showing model trajectories for S, C, R (and optionally N) versus time (0 to 365 days).
+
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{path/to/model_trajectories.png}
+    \caption{[Model Trajectories: S, C, R vs Time]}
+    \label{fig:model_trajectories}
+\end{figure}
+
+[Insert Model Trajectories Figure Here]
+
+\subsection{Model vs Data Comparison}
+% Instruction: Figures comparing model vs data medians:
+% - S vs TSCM
+% - C vs TCM
+% - R vs TEMRA
+% - Total Memory (S+C+R) vs Total CD4 Data
+
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{path/to/comparison_plot.png}
+    \caption{[Model vs Data Comparison]}
+    \label{fig:model_vs_data}
+\end{figure}
+
+[Insert Comparison Figures Here]
+
+\section{ABM Discussion}
+
+\textit{Goal: Explain parameters and model performance.}
+
+\subsection{Final Parameters}
+% Instruction: List the final parameter values used (T_antigen, p_act, frac_memory, p_SC, p_CR, d_S, d_C, d_R).
+
+[Insert Parameter List Here]
+
+\subsection{Explanation}
+% Instruction: Short explanation (1/2 – 1 page) covering:
+% - How well the model reproduces CD4 memory persistence.
+% - What it gets right/wrong.
+% - Effect of changing frac_memory (memory-dominant vs TEMRA-skewed).
+
+[Insert Explanation Text Here]
+
+\end{document}
