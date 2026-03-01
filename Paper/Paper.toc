@@ -1,0 +1,16 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Introductie}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Biologische achtergrond}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Onderzoeksdoel}{2}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Methodologie}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Metingen en eerste dataverwerking}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Het compartement-model}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Agent-Based Model implementatie}{3}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Structuur}{3}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Model Rules}{3}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Parameter Optimizatie}{3}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Results}{4}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{5}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{6}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Code}{8}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Mesa Agent Implementatie}{8}{section.A.1}%

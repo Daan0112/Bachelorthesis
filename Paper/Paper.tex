@@ -1,0 +1,79 @@
+% How to make codeblock
+% \begin{lstlisting} ... \end{lstlisting}
+
+
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs} % For professional tables
+\usepackage{hyperref} % For clickable links
+\usepackage{listings} % For showing your Python/Mesa code
+\usepackage{geometry}
+ \geometry{left=3cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% Code snippet styling
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\lstset{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny,
+    stringstyle=\color{purple},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    language=Python
+}
+
+% --- Info ---
+\title{Tijdelijke titel \\
+\large \& Subtitel}
+\author{Daan Grupping}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+
+\end{abstract}
+
+\tableofcontents
+
+% --- Chapters ---
+
+\chapter{Introductie}
+\section{Biologische achtergrond}
+\section{Onderzoeksdoel}
+
+\chapter{Methodologie}
+\section{Metingen en eerste dataverwerking}
+\section{Het compartement-model}
+\section{Agent-Based Model implementatie}
+\subsection{Structuur}
+\subsection{Model Rules}
+\section{Parameter Optimizatie}
+
+\chapter{Results}
+
+\chapter{Discussion}
+
+\chapter{Conclusion}
+
+% --- Bibliography ---
+\nocite{*} 
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\chapter{Code}
+\section{Mesa Agent Implementatie}
+
+\end{document}
