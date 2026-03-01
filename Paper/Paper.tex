@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\graphicspath{ {./Assets/} }
 \usepackage{amsmath, amssymb}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{booktabs} % For professional tables
@@ -55,11 +56,35 @@
 
 \chapter{Methodologie}
 \section{Metingen en eerste dataverwerking}
+\begin{equation}
+    \text{response} = \text{\% AIM}^+ - \text{Achtergrond \% AIM}^+
+\end{equation}
+\begin{equation}
+    \text{\% AIM}^+ = \frac{\text{te meten evenement}}{\text{totaal aantal evenementen}}
+\end{equation}
+De Achtergrond \% AIM$^+$ is verschillend per patient maar constant door de tijd.
+ De response is dus een maat voor de verandering in AIM$^+$ over de tijd, gecorrigeerd voor de achtergrond AIM$^+$ van die patient.
+De waarde van de 'te meten evenementen' en an de achtergrond is bij de effector memory T-cellen (TEM) steeds nul, dit wijst dus op 
+of een afwezigheid van deze cellen in het menselijk lichaam of de methode voor de metingen kan de TEM cellen niet detecteren. 
+We kunnen de TEM cellen dus niet meenemen in onze analyses en modellen.
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page
+    \centering
+    \includegraphics[width=0.8\textwidth]{EDA1} 
+    \caption{.}
+    \label{fig:}
+\end{figure}
+
 \section{Het compartement-model}
 \section{Agent-Based Model implementatie}
 \subsection{Structuur}
 \subsection{Model Rules}
 \section{Parameter Optimizatie}
+We maken gebruik van een schaalfactor om de resultaten van het model te schalen naar de data, omdat de absolute aantallen in het 
+model niet overeenkomen met de absolute aantallen in de data. De schaalfactor wordt geoptimaliseerd om de fit tussen het model en 
+de data te maximaliseren. We gebruiken een eenvoudige kwadratische verliesfunctie om deze fit te meten:
+\begin{equation}
+    L(model\_results, data) = \sum_{T=[1,22,43,365]} (\text{model\_results}_T * \text{schaalfactor} - \text{data}_T)^2
+\end{equation}
 
 \chapter{Results}
 

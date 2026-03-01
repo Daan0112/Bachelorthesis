@@ -65,6 +65,6 @@ study = optuna.create_study(
     load_if_exists=True,
     direction="minimize"
 )
-study.optimize(objective, n_trials=100) 
+study.optimize(objective, n_trials=1000) 
 
 print("Best parameters found:", study.best_params)

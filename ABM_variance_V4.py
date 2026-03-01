@@ -1,4 +1,4 @@
-
+import ABM_scalingfactor_Active as scalingfactor
 
 def Calculate_variance2median(run):
     time_points = [0, 21, 42, 364]
@@ -11,31 +11,20 @@ def Calculate_variance2median(run):
     S_datasubset_median = [0.0, 0.218, 0.171, 0.246]
     C_datasubset_median = [0.0, 0.380, 0.338, 0.178]
     R_datasubset_median = [0.0, 0.072, 0.091, 0.033]
-    numerator=0
-    denominator=0
-    for i in range(4):
-        numerator+=(N_modelsubset[i]*N_datasubset_median[i]
-                    + S_modelsubset[i]*S_datasubset_median[i]
-                    + C_modelsubset[i]*C_datasubset_median[i]
-                    + R_modelsubset[i]*R_datasubset_median[i])
-        denominator+=(N_modelsubset[i]**2
-                      + S_modelsubset[i]**2
-                      + C_modelsubset[i]**2
-                      + R_modelsubset[i]**2)
-    run.global_factor=numerator/denominator
 
+    scalingfactor.Calculate_global_factor(run)
 
     loss_N = 0
     loss_S = 0
     loss_C = 0
     loss_R = 0
     for i in range(4):
-        add_loss_N = (N_modelsubset[i] * run.global_factor - N_datasubset_median[i])**2
+        #add_loss_N = (N_modelsubset[i] * run.global_factor - N_datasubset_median[i])**2
         add_loss_S = (S_modelsubset[i] * run.global_factor - S_datasubset_median[i])**2
         add_loss_C = (C_modelsubset[i] * run.global_factor - C_datasubset_median[i])**2
         add_loss_R = (R_modelsubset[i] * run.global_factor - R_datasubset_median[i])**2
-        loss_N += add_loss_N
+        #loss_N += add_loss_N
         loss_S += add_loss_S
         loss_C += add_loss_C
         loss_R += add_loss_R
-    return [loss_N, loss_S, loss_C, loss_R]
+    return [loss_S, loss_C, loss_R] # Loss_N is temporarily removed.

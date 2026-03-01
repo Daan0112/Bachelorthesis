@@ -126,7 +126,7 @@ class Immunology_Model(mesa.Model):
         self.d_R = float(d_R)
         # Initial population
         self.initial_population = int(initial_population)
-        # self.global_factor = global_factor
+        self.global_factor = 'Undefined'
 
         # create CD4Cells
         for i in range(self.initial_population):

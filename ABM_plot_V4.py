@@ -1,8 +1,12 @@
 import matplotlib.pyplot as plt
+import ABM_scalingfactor_Active as scalingfactor
+
 
 def plot_model_vs_data(run):
     time_points = [1, 22, 43, 365]
     indices = [0, 21, 42, 364]
+    scalingfactor.Calculate_global_factor(run)
+
     
     # Data labels and medians
     subsets = ["%N", "%S", "%C", "%R", "%Total_memory"]
