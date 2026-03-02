@@ -12,11 +12,11 @@ def Calculate_global_factor(run):
     numerator=0
     denominator=0
     for i in range(4):
-        numerator+=(#N_modelsubset[i]*N_datasubset_median[i] +
+        numerator+=(N_modelsubset[i]*N_datasubset_median[i] +
                     S_modelsubset[i]*S_datasubset_median[i]
                     + C_modelsubset[i]*C_datasubset_median[i]
                     + R_modelsubset[i]*R_datasubset_median[i])
-        denominator+=(#N_modelsubset[i]**2 +
+        denominator+=(N_modelsubset[i]**2 +
                       S_modelsubset[i]**2
                       + C_modelsubset[i]**2
                       + R_modelsubset[i]**2)

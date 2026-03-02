@@ -19,12 +19,12 @@ def Calculate_variance2median(run):
     loss_C = 0
     loss_R = 0
     for i in range(4):
-        #add_loss_N = (N_modelsubset[i] * run.global_factor - N_datasubset_median[i])**2
+        add_loss_N = (N_modelsubset[i] * run.global_factor - N_datasubset_median[i])**2
         add_loss_S = (S_modelsubset[i] * run.global_factor - S_datasubset_median[i])**2
         add_loss_C = (C_modelsubset[i] * run.global_factor - C_datasubset_median[i])**2
         add_loss_R = (R_modelsubset[i] * run.global_factor - R_datasubset_median[i])**2
-        #loss_N += add_loss_N
+        loss_N += add_loss_N
         loss_S += add_loss_S
         loss_C += add_loss_C
         loss_R += add_loss_R
-    return [loss_S, loss_C, loss_R] # Loss_N is temporarily removed.
+    return [loss_N/sum(N_datasubset_median), loss_S/sum(S_datasubset_median), loss_C/sum(C_datasubset_median), loss_R/sum(R_datasubset_median)] 
