@@ -21,10 +21,9 @@ def calculate_scale_and_RMSE(model_medians):
 
     s_factor = numerator / denominator if denominator != 0 else 1
 
-    # 3. Calculate RMSE Loss
+    # Calculate RMSE
     total_error = 0
     for i in range(4):
-        # Predicted % = (Count / S) * 100 [cite: 110, 135]
         err_S = ( (model_medians['%TSCM'][i] * s_factor) - data_TSCM[i] )**2
         err_C = ( (model_medians['%TCM'][i] * s_factor) - data_TCM[i] )**2
         err_R = ( (model_medians['%TEMRA'][i] * s_factor) - data_TEMRA[i] )**2
