@@ -8,9 +8,9 @@ def calculate_scale_and_RMSE(model_medians):
     denominator = 0
     for i in range(4):
         numerator += (
-                model_medians['%TSCM'][i] * (data_TSCM[i]/100) + 
-                model_medians['%TCM'][i] * (data_TCM[i]/100) + 
-                model_medians['%TEMRA'][i] * (data_TEMRA[i]/100)
+                model_medians['%TSCM'][i] * (data_TSCM[i]) + 
+                model_medians['%TCM'][i] * (data_TCM[i]) + 
+                model_medians['%TEMRA'][i] * (data_TEMRA[i])
                 )
         
         denominator += (
@@ -20,7 +20,7 @@ def calculate_scale_and_RMSE(model_medians):
                 )
 
     s_factor = numerator / denominator if denominator != 0 else 1
-
+    print(s_factor)
     # Calculate RMSE
     total_error = 0
     for i in range(4):

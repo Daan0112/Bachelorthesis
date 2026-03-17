@@ -72,6 +72,9 @@ class CD4Cell(mesa.Agent):
         elif self.cell_type == "TEMRA" and random.random() < self.model.mu_TEMRA:
             self.model.counts["TEMRA"] -= 1
             self.remove()
+        elif self.cell_type == "TEM" and random.random() < self.model.mu_TEM:
+            self.model.counts["TEM"] -= 1
+            self.remove()
         elif self.cell_type == "SLEC" and random.random() < self.model.mu_SLEC:
             self.model.counts["SLEC"] -= 1
             self.remove()
@@ -151,6 +154,8 @@ class Immunology_Model(mesa.Model):
                 "%TCM": lambda m: (m.counts["TCM"] / self.S_CD4)*100,
                 "%TEMRA": lambda m: (m.counts["TEMRA"] / self.S_CD4)*100,
                 "%TEM": lambda m: (m.counts["TEM"] / self.S_CD4)*100,
+                "%SLEC": lambda m: (m.counts["SLEC"] / self.S_CD4)*100,
+                "%MPEC": lambda m: (m.counts["MPEC"] / self.S_CD4)*100,
                 "%Total_memory": lambda m: ((m.counts["TSCM"]+m.counts["TCM"]+m.counts["TEMRA"]+m.counts["TEM"]) / self.S_CD4)*100,
                 "Total_Live": lambda m: sum(m.counts.values())
             }

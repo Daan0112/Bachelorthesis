@@ -55,6 +55,47 @@ def measure_points(median_dict):
         
     return calibration_data
 
+def calculate_multrun_IQR(results_list):
+    """
+    Calculates the 25th and 75th percentiles (IQR) across seeds 
+    for the uncertainty ribbons.
+    """
+    keys = list(results_list[0].keys())
+    num_days = len(results_list[0][keys[0]])
+    num_seeds = len(results_list)
+    key_to_idx = {key: i for i, key in enumerate(keys)}
+    
+    # Create the data cube
+    data_cube = np.zeros((len(keys), num_seeds, num_days))
+    for seed_idx, seed_data in enumerate(results_list):
+        for key, daily_values in seed_data.items():
+            data_cube[key_to_idx[key], seed_idx, :] = daily_values
+            
+    # Calculate percentiles across the runs axis (axis=1) 
+    low_bound = np.percentile(data_cube, 25, axis=1)
+    high_bound = np.percentile(data_cube, 75, axis=1)
+    
+    # Format into dictionaries for easy plotting
+    low_dict = {key: low_bound[key_to_idx[key]] for key in keys}
+    high_dict = {key: high_bound[key_to_idx[key]] for key in keys}
+    
+    return low_dict, high_dict
+
+def get_plot_data(params, num_seeds=50):
+    """
+    High-level helper to run the simulation and return all plotting 
+    components: Medians and IQR bounds.
+    """
+    # 1. Run the parallel simulations [cite: 261]
+    raw_results = multrun(params, num_seeds=num_seeds)
+    
+    # 2. Extract Medians
+    medians = calculate_multrun_medians(raw_results)
+    
+    # 3. Extract IQR Bounds 
+    low_iqr, high_iqr = calculate_multrun_IQR(raw_results)
+    
+    return medians, low_iqr, high_iqr
 
 if __name__ == "__main__":
     
