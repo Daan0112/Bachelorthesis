@@ -1,4 +1,5 @@
 import ABM_multrun_Active as multrun
+from ABM_variance_Active import calculate_scale_and_RMSE
 import optuna
 
 def objective(trial):
@@ -44,9 +45,11 @@ def objective(trial):
         "t_peak": t_peak,
         "sigma": sigma
     }
-
-    
-    return loss
+    data = multrun.multrun(params)
+    medians = multrun.calculate_multrun_medians(data)
+    measure_points = multrun.measure_points(medians)
+    _, RMSE = calculate_scale_and_RMSE(measure_points)
+    return RMSE
 
 # 4. Start the "Machine Learning" Search
 study = optuna.create_study(

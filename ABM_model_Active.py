@@ -146,11 +146,12 @@ class Immunology_Model(mesa.Model):
         # initiate data collector
         self.datacollector = mesa.DataCollector(
             model_reporters={
-                "%N": lambda m: (m.counts["Naive"] / self.S_CD4)*100,
-                "%S": lambda m: (m.counts["TSCM"] / self.S_CD4)*100,
-                "%C": lambda m: (m.counts["TCM"] / self.S_CD4)*100,
-                "%R": lambda m: (m.counts["TEMRA"] / self.S_CD4)*100,
-                "%Total_memory": lambda m: ((m.counts["TSCM"]+m.counts["TCM"]+m.counts["TEMRA"]) / self.S_CD4)*100,
+                "%Naive": lambda m: (m.counts["Naive"] / self.S_CD4)*100,
+                "%TSCM": lambda m: (m.counts["TSCM"] / self.S_CD4)*100,
+                "%TCM": lambda m: (m.counts["TCM"] / self.S_CD4)*100,
+                "%TEMRA": lambda m: (m.counts["TEMRA"] / self.S_CD4)*100,
+                "%TEM": lambda m: (m.counts["TEM"] / self.S_CD4)*100,
+                "%Total_memory": lambda m: ((m.counts["TSCM"]+m.counts["TCM"]+m.counts["TEMRA"]+m.counts["TEM"]) / self.S_CD4)*100,
                 "Total_Live": lambda m: sum(m.counts.values())
             }
         )
