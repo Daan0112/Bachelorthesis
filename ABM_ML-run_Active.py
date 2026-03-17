@@ -1,62 +1,52 @@
-import ABM_model_Active as modelV4
-import ABM_variance_Active as varianceV4
+import ABM_multrun_Active as multrun
 import optuna
 
 def objective(trial):
-    # --- 1. TIME & POPULATION ---
-    # suggest_int for whole numbers
-    T_antigen = trial.suggest_int("T_antigen", 10, 30)
-    initial_population = trial.suggest_int("initial_population", 1000, 1000)
-    # global_factor = trial.suggest_float("global_factor", 1e-7, 0.1, log=True)
-    # --- 2. ACTIVATION & DIFFERENTIATION ---
-    # Log scale is better for p_act because 0.0001 and 0.001 are both valid
-    p_act = trial.suggest_float("p_act", 1e-7, 1, log=True)
-    frac_memory = trial.suggest_float("frac_memory", 0, 1)
-    S_C_Ratio = trial.suggest_float("S_C_Ratio", 0, 1)
-    # --- 3. TRANSITION PROBABILITIES ---
-    p_SC = trial.suggest_float("p_SC", 1e-7, 1, log=True)
-    p_CR = trial.suggest_float("p_CR", 1e-7, 1, log=True)
-    # --- 4. PROLIFERATION RATES (r) ---
-    r_N = trial.suggest_float("r_N", 0, 0.1)
-    r_S = trial.suggest_float("r_S", 0, 0.1)
-    r_C = trial.suggest_float("r_C", 0, 0.0)
-    r_R = trial.suggest_float("r_R", 0, 0.0)
-    # --- 5. DEATH RATES (d) ---
-    d_N = trial.suggest_float("d_N", 1e-7, 0.1, log=True)
-    d_S = trial.suggest_float("d_S", 1e-7, 0.1, log=True)
-    d_C = trial.suggest_float("d_C", 1e-7, 0.1, log=True)
-    d_R = trial.suggest_float("d_R", 1e-7, 0.1, log=True)
-
-    # --- 6. PACKING INTO DICTIONARY ---
+    # FREE parameters
+    alpha_peak = trial.suggest_float("alpha_peak",0.01,0.3)
+    b_MPEC = trial.suggest_int("b_MPEC",1,4) # 5
+    K_mem = trial.suggest_int("K_mem",50,500)
+    S_CD4 = trial.suggest_int("S_CD4",500,10000)
+    # FIXED parameters
+    mu_N = 0.0003
+    mu_TSCM = 0.0002
+    mu_TCM = 0.004
+    mu_TEM = 0.01
+    mu_TEMRA = 0.02
+    mu_MPEC = 0.02
+    mu_SLEC = 0.05
+    f_TSCM = 0.03
+    f_TCM = 0.05
+    f_TEM = 0.06
+    f_TEMRA = 0.02
+    t_peak = 18
+    sigma = 7
+    q = 0.35
+    b_SLEC = b_MPEC
     params = {
-        "T_antigen": T_antigen,
-        "initial_population": initial_population,
-        # "global_factor": global_factor,
-        "p_act": p_act,
-        "frac_memory": frac_memory,
-        "S_C_Ratio": S_C_Ratio,
-        "p_SC": p_SC,
-        "p_CR": p_CR,
-        "r_N": r_N,
-        "r_S": r_S,
-        "r_C": r_C,
-        "r_R": r_R,
-        "d_N": d_N,
-        "d_S": d_S,
-        "d_C": d_C,
-        "d_R": d_R
+        "mu_N": mu_N,
+        "mu_TSCM": mu_TSCM,
+        "mu_TCM": mu_TCM,
+        "mu_TEM": mu_TEM,
+        "mu_TEMRA": mu_TEMRA,
+        "mu_MPEC": mu_MPEC,
+        "mu_SLEC": mu_SLEC,
+        "f_TSCM": f_TSCM,
+        "f_TCM": f_TCM,
+        "f_TEM": f_TEM,
+        "f_TEMRA": f_TEMRA,
+        "b_MPEC": b_MPEC,
+        "b_SLEC": b_SLEC,
+        "q": q,
+        "K_mem": K_mem,
+        "S_CD4": S_CD4,
+        "alpha_peak": alpha_peak,
+        "t_peak": t_peak,
+        "sigma": sigma
     }
 
-    # --- 7. RUN & EVALUATE ---
-    model = modelV4.Immunology_Model(**params)
-    for _ in range(365):
-        model.step()
     
-    # Use your existing loss function
-    losses = varianceV4.Calculate_variance2median(model)
-    
-    # Return the sum of all losses to the optimizer
-    return sum(losses)
+    return loss
 
 # 4. Start the "Machine Learning" Search
 study = optuna.create_study(
@@ -65,6 +55,6 @@ study = optuna.create_study(
     load_if_exists=True,
     direction="minimize"
 )
-study.optimize(objective, n_trials=1000) 
+study.optimize(objective, n_trials=100) 
 
 print("Best parameters found:", study.best_params)

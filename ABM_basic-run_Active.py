@@ -13,5 +13,48 @@ def run_simulation(params_dict):
     plotV4.plot_model_vs_data(model)
     return model
 
-base_params = {'T_antigen': 22, 'initial_population': 1000, 'p_act': 0.7130575836504838, 'frac_memory': 0.81985770893272, 'S_C_Ratio': 0.13072410353235184, 'p_SC': 3.112310238392141e-05, 'p_CR': 0.0014285840051584267, 'r_N': 0.049666033337027966, 'r_S': 0.06515909784610464, 'r_C': 0.0, 'r_R': 0.0, 'd_N': 0.0035584268482424285, 'd_S': 4.731783078114052e-06, 'd_C': 0.0007002347364540852, 'd_R': 0.017535584696647337}
-run_simulation(base_params)
+
+# FREE parameters
+alpha_peak = 0.28915212707842
+b_MPEC = 1
+K_mem = 243
+S_CD4 = 5738
+# FIXED parameters
+mu_N = 0.0003
+mu_TSCM = 0.0002
+mu_TCM = 0.004
+mu_TEM = 0.01
+mu_TEMRA = 0.02
+mu_MPEC = 0.02
+mu_SLEC = 0.05
+f_TSCM = 0.03
+f_TCM = 0.05
+f_TEM = 0.06
+f_TEMRA = 0.02
+t_peak = 18
+sigma = 7
+q = 0.35
+b_SLEC = b_MPEC
+
+params = {
+    "mu_N": mu_N,
+    "mu_TSCM": mu_TSCM,
+    "mu_TCM": mu_TCM,
+    "mu_TEM": mu_TEM,
+    "mu_TEMRA": mu_TEMRA,
+    "mu_MPEC": mu_MPEC,
+    "mu_SLEC": mu_SLEC,
+    "f_TSCM": f_TSCM,
+    "f_TCM": f_TCM,
+    "f_TEM": f_TEM,
+    "f_TEMRA": f_TEMRA,
+    "b_MPEC": b_MPEC,
+    "b_SLEC": b_SLEC,
+    "q": q,
+    "K_mem": K_mem,
+    "S_CD4": S_CD4,
+    "alpha_peak": alpha_peak,
+    "t_peak": t_peak,
+    "sigma": sigma
+}
+run_simulation(params)

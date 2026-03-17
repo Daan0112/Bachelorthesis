@@ -1,28 +1,9 @@
- 
-import numpy as np
-from multiprocessing import Pool
+import cProfile
+import pstats
 import ABM_model_Active as modelV4
 
-def run_single_seed(params):
-    model = modelV4.Immunology_Model(**params)
-    
-    for _ in range(365):
-        model.step()
-    print('Complete')
-    return model.datacollector.model_vars
-
-def multrun(params, num_seeds=50):
-    worker_args = [params for _ in range(num_seeds)]
-    
-    with Pool() as pool:
-        results_list = pool.map(run_single_seed, worker_args)
-    
-    return results_list
-
-
-if __name__ == "__main__":
-    
-# --- Example Usage ---
+def profile_model():
+    # Use your fixed parameters
     # FREE parameters
     alpha_peak = 0.28915212707842
     b_MPEC = 1
@@ -66,4 +47,16 @@ if __name__ == "__main__":
         "t_peak": t_peak,
         "sigma": sigma
     }
-    multrun(num_seeds=100, params=params)
+    model = modelV4.Immunology_Model(**params)
+    for _ in range(365):
+        model.step()
+
+# Run the profiler
+profiler = cProfile.Profile()
+profiler.enable()
+profile_model()
+profiler.disable()
+
+# Print the results sorted by 'tottime' (time spent in the function itself)
+stats = pstats.Stats(profiler).sort_stats('tottime')
+stats.print_stats(20) # Show the top 20 bottlenecks
