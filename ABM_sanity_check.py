@@ -52,8 +52,9 @@ m4 = run_check({
 print("--- Check 4 ('mu_@': 0) ---")
 total_end = m4['Total_Live'][-1]
 total_start = m4['Total_Live'][0]
-print(f"Start Population: {total_start} | End Population: {total_end} (Should be higher)")
-if total_end > total_start:
+total_max = max(m4['Total_Live'])
+print(f"Start Population: {total_start} | End Population: {total_end} | Max Population: {total_max}")
+if total_end > total_start and total_max == total_end:
     print('SUCCES',"\n")
 else:
     print('FAILURE',"\n")
@@ -61,6 +62,7 @@ else:
 
 # 5. 365 days
 m5 = run_check({})
+print("--- Check 5 (Check all data for lowest value) ---")
 min_val = min([min(v) for v in m5.values()])
 print(f"Minimum value found: {min_val} (Should be >= 0)")
 if min_val >= 0:
@@ -83,7 +85,7 @@ def plot_sanity_check(medians):
     
     # Plotting relevant subsets for CD4 dynamics
     plt.plot(days, medians['%Naive'], label='Naive', color='gray', linestyle='--')
-    plt.plot(days, medians['%TSCM'], label='TSCM (Persistence)', color='blue')
+    plt.plot(days, medians['%TSCM'], label='TSCM', color='blue')
     plt.plot(days, medians['%TCM'], label='TCM', color='green')
     plt.plot(days, medians['%TEMRA'], label='TEMRA', color='red')
     plt.plot(days, medians['%TEM'], label='TEM', color='yellow')

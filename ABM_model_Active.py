@@ -8,7 +8,7 @@ def gaussian_pulse(model):
 class CD4Cell(mesa.Agent):
     def __init__(self, model, cell_type = 'Naive'):
         super().__init__(model)
-        self.cell_type = cell_type  # Naive, TSCM, TCM, TEMRA, TEM SLEC, MPEC 
+        self.cell_type = cell_type  # Naive, TSCM, TCM, TEMRA, TEM, SLEC, MPEC 
 
     def cap(self):
         memory_count = self.model.counts["TSCM"] + self.model.counts["TCM"]

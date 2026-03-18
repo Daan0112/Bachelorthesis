@@ -1,10 +1,10 @@
 import numpy as np
 from multiprocessing import Pool
-import ABM_model_Active as modelV4
+import ABM_model_Active as model
 
 def run_single_seed(params):
     # initialize model
-    model = modelV4.Immunology_Model(**params)
+    model = model.Immunology_Model(**params)
     # run model
     for _ in range(365):
         model.step()
