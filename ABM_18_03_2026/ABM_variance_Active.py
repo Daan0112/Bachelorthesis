@@ -12,7 +12,7 @@ def calculate_scale_and_RMSE(model_medians):
                 model_medians['%TCM'][i] * (data_TCM[i]) + 
                 model_medians['%TEMRA'][i] * (data_TEMRA[i])
                 )
-
+        
         denominator += (
                 model_medians['%TSCM'][i]**2 + 
                 model_medians['%TCM'][i]**2 + 
@@ -27,9 +27,9 @@ def calculate_scale_and_RMSE(model_medians):
         err_S = ( (model_medians['%TSCM'][i] * s_factor) - data_TSCM[i] )**2
         err_C = ( (model_medians['%TCM'][i] * s_factor) - data_TCM[i] )**2
         err_R = ( (model_medians['%TEMRA'][i] * s_factor) - data_TEMRA[i] )**2
-
+        
         total_error += (err_S + err_C + err_R)
 
     rmse = (total_error / 12)**0.5 # 12 points (3 subsets * 4 timepoints)
-
+    
     return s_factor, rmse

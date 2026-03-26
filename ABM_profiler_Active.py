@@ -1,6 +1,6 @@
 import cProfile
 import pstats
-import ABM_model_Active as model
+import ABM_model_Active as modelV4
 
 def profile_model():
     # Use your fixed parameters
@@ -47,7 +47,7 @@ def profile_model():
         "t_peak": t_peak,
         "sigma": sigma
     }
-    model = model.Immunology_Model(**params)
+    model = modelV4.Immunology_Model(**params)
     for _ in range(365):
         model.step()
 
