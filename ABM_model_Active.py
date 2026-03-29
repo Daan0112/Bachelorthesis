@@ -51,8 +51,8 @@ class CD4Cell(mesa.Agent):
             self.model.counts["SLEC"] -= 1
             self.cell_type = "TEMRA"
             self.model.counts["TEMRA"] += 1
-        # The random value - f_TSCM is to not influence chances due to cells already changed to TSCM.
-        elif self.cell_type == "SLEC" and random_value - self.model.f_TSCM < self.model.f_TEM:
+        # The random value - f_TSCM is to not influence chances due to cells already changed to TEMRA.
+        elif self.cell_type == "SLEC" and random_value - self.model.f_TEMRA < self.model.f_TEM:
             self.model.counts["SLEC"] -= 1
             self.cell_type = "TEM"
             self.model.counts["TEM"] += 1

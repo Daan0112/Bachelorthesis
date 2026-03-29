@@ -2,7 +2,7 @@ def calculate_scale_and_RMSE(model_medians):
     #Experimental Medians
     data_TSCM = [0.0, 0.218, 0.171, 0.246]
     data_TCM = [0.0, 0.380, 0.338, 0.178]
-    data_TEMRA = [0.0, 0.072, 0.091, 0.033]
+    data_TEMRA = [0.0, 0.072, 0.091, 0.034]
     # Calculate Scaling Factor
     numerator = 0
     denominator = 0
@@ -20,7 +20,6 @@ def calculate_scale_and_RMSE(model_medians):
                 )
 
     s_factor = numerator / denominator if denominator != 0 else 1
-    print(s_factor)
     # Calculate RMSE
     total_error = 0
     for i in range(4):

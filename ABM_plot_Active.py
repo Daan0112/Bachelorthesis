@@ -64,8 +64,8 @@ if __name__ == "__main__":
         "mu_N": 0.0003, "mu_TSCM": 0.0002, "mu_TCM": 0.004, "mu_TEM": 0.01,
         "mu_TEMRA": 0.02, "mu_MPEC": 0.02, "mu_SLEC": 0.05, "f_TSCM": 0.03,
         "f_TCM": 0.05, "f_TEM": 0.06, "f_TEMRA": 0.02, "t_peak": 18,
-        "sigma": 7, "q": 0.35, "alpha_peak": 0.2720679356792652, "b_MPEC": 1, 
-        "b_SLEC": 1, "K_mem": 212, "S_CD4": 675
+        "sigma": 7, "q": 0.10867425382641213, "alpha_peak": 0.1060179817341049, "b_MPEC": 1, 
+        "b_SLEC": 1, "K_mem": 172, "S_CD4": 1655
     }
     
     print("Gathering data for 50 seeds...")

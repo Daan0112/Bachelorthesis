@@ -1,0 +1,6 @@
+[I 2026-03-26 22:55:50,743] Using an existing study with name 'typhoid_fit' instead of creating a new one.
+[I 2026-03-26 22:56:24,015] Trial 0 finished with value: 0.15182379828135928 and parameters: {'alpha_peak': 0.2500227152076592, 'b_MPEC': 2, 'K_mem': 369, 'S_CD4': 8722, 'q': 0.18497014870510584}. Best is trial 0 with value: 0.15182379828135928.
+0.03775894660579926
+[I 2026-03-26 22:56:57,460] Trial 1 finished with value: 0.07729832232080301 and parameters: {'alpha_peak': 0.015093395420879988, 'b_MPEC': 4, 'K_mem': 445, 'S_CD4': 5199, 'q': 0.15110739499684703}. Best is trial 1 with value: 0.07729832232080301.
+0.05038780049332266
+Best parameters found: {'alpha_peak': 0.015093395420879988, 'b_MPEC': 4, 'K_mem': 445, 'S_CD4': 5199, 'q': 0.15110739499684703}

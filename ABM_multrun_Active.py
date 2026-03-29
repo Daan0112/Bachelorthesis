@@ -1,19 +1,20 @@
 import numpy as np
 from multiprocessing import Pool
 import ABM_model_Active as modelV4
+import random
 
-def run_single_seed(params):
-    # initialize model
+def run_single_seed(args):
+    params, seed = args
+    random.seed(seed)
     model = modelV4.Immunology_Model(**params)
     # run model
     for _ in range(365):
         model.step()
-    # return data
     return model.datacollector.model_vars
 
 def multrun(params, num_seeds=50):
     # run the model x times using parallel processing.
-    worker_args = [params for _ in range(num_seeds)]
+    worker_args = [(params, seed) for seed in range(num_seeds)]
     with Pool() as pool:
         results_list = pool.map(run_single_seed, worker_args)
     return results_list

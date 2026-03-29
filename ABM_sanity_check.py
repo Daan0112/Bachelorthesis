@@ -22,7 +22,7 @@ m1 = run_check({"alpha_peak": 0})
 print("--- Check 1 ('alpha_peak': 0) ---")
 print("Max Values:", {k: float(round(max(v), 4)) for k, v in m1.items()})
 if max(m1['%TSCM']) == 0 and max(m1['%TCM']) == 0 and max(m1['%TEMRA']) == 0 and max(m1['%TEM']) == 0.0:
-    print('SUCCES',"\n")
+    print('SUCCESS',"\n")
 else:
     print('FAILURE',"\n")
 
@@ -30,8 +30,8 @@ else:
 m2 = run_check({"q": 0})
 print("--- Check 2 ('q': 0) ---")
 print("Max Values:", {k: float(round(max(v), 4)) for k, v in m2.items()})
-if max(m1['%TEMRA']) == 0 and max(m1['%TEM']) == 0.0:
-    print('SUCCES',"\n")
+if max(m2['%TEMRA']) == 0 and max(m2['%TEM']) == 0.0:
+    print('SUCCESS',"\n")
 else:
     print('FAILURE',"\n")
 
@@ -39,8 +39,8 @@ else:
 m3 = run_check({"q": 1})
 print("--- Check 3 ('q': 1) ---")
 print("Max Values:", {k: float(round(max(v), 4)) for k, v in m3.items()})
-if max(m1['%TSCM']) == 0 and max(m1['%TCM']) == 0:
-    print('SUCCES',"\n")
+if max(m3['%TSCM']) == 0 and max(m3['%TCM']) == 0:
+    print('SUCCESS',"\n")
 else:
     print('FAILURE',"\n")
 
@@ -55,7 +55,7 @@ total_start = m4['Total_Live'][0]
 total_max = max(m4['Total_Live'])
 print(f"Start Population: {total_start} | End Population: {total_end} | Max Population: {total_max}")
 if total_end > total_start and total_max == total_end:
-    print('SUCCES',"\n")
+    print('SUCCESS',"\n")
 else:
     print('FAILURE',"\n")
 
@@ -66,7 +66,7 @@ print("--- Check 5 (Check all data for lowest value) ---")
 min_val = min([min(v) for v in m5.values()])
 print(f"Minimum value found: {min_val} (Should be >= 0)")
 if min_val >= 0:
-    print('SUCCES',"\n")
+    print('SUCCESS',"\n")
 else:
     print('FAILURE',"\n")
 
