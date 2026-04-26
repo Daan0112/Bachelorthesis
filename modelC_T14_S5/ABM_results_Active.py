@@ -2,7 +2,7 @@ import optuna
 import ABM_plot_Active as plotter
 import ABM_multrun_Active as multrun
 
-study = optuna.load_study(study_name="yellowfever_250seeds_q25", storage="sqlite:///yellowfever_250seeds_q25_t14s5_contraction.db")
+study = optuna.load_study(study_name="yellowfever_250seeds_q25", storage="sqlite:///yellowfever_250seeds_q25_contraction.db")
 
 # Base params
 params = {
@@ -18,6 +18,6 @@ params.update(study.best_params)
 params["b_SLEC"] = params["b_MPEC"]
 
 m, low, high = multrun.get_plot_data(params, num_seeds=250)
-plotter.plot_model_vs_data(m, low, high, params, saving="yellowfever_250seeds_q25_t14s5_contraction.png")
+plotter.plot_model_vs_data(m, low, high, params, saving="yellowfever_250seeds_q25_contraction.png")
 print(params)
 

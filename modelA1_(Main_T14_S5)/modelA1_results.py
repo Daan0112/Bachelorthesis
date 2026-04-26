@@ -1,6 +1,6 @@
 import optuna
-import ABM_plot_Active as plotter
-import ABM_multrun_Active as multrun
+import modelA1_plot as plotter
+import modelA1_multrun as multrun
 
 study = optuna.load_study(study_name="yellowfever_250seeds_q25", storage="sqlite:///yellowfever_250seeds_q25_t14s5_contraction.db")
 

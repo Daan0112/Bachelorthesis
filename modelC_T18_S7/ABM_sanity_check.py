@@ -8,7 +8,7 @@ def run_check(custom_params):
         "mu_TEMRA": 0.02, "mu_MPEC": 0.02, "mu_SLEC": 0.05, "f_TSCM": 0.03,
         "f_TCM": 0.05, "f_TEM": 0.06, "f_TEMRA": 0.02, "t_peak": 14,
         "sigma": 5, "q": 0.35, "alpha_peak": 0.2, "b_MPEC": 2, 
-        "b_SLEC": 2, "K_mem": 999_999, "S_CD4": 1000
+        "b_SLEC": 2, "K_mem": 250, "S_CD4": 1000
     }
     # Update with specific check parameters
     base_params.update(custom_params)

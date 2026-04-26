@@ -1,5 +1,5 @@
-import ABM_multrun_Active as multrun
-from ABM_variance_Active import calculate_scale_and_RMSE
+import modelA2_multrun as multrun
+from modelA2_variance import calculate_scale_and_RMSE
 import optuna
 
 def objective(trial):

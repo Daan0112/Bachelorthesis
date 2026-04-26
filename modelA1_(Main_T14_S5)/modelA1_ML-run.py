@@ -1,5 +1,5 @@
-import ABM_multrun_Active as multrun
-from ABM_variance_Active import calculate_scale_and_RMSE
+import modelA1_multrun as multrun
+from modelA1_variance import calculate_scale_and_RMSE
 import optuna
 
 def objective(trial):
@@ -21,8 +21,8 @@ def objective(trial):
     f_TCM = 0.05
     f_TEM = 0.06
     f_TEMRA = 0.02
-    t_peak = 18
-    sigma = 7
+    t_peak = 14
+    sigma = 5
     b_SLEC = b_MPEC
     params = {
         "mu_N": mu_N,
@@ -53,8 +53,8 @@ def objective(trial):
 
 # 4. Start the "Machine Learning" Search
 study = optuna.create_study(
-    study_name="yellowfever_250seeds_q25",
-    storage="sqlite:///yellowfever_250seeds_q25.db",
+    study_name="yellowfever_250seeds_q25_t14s5",
+    storage="sqlite:///yellowfever_250seeds_q25_t14s5.db",
     load_if_exists=True,
     direction="minimize"
 )

@@ -1,13 +1,13 @@
 import numpy as np
 import multiprocessing
-import ABM_model_Active as modelV4
+import modelA1_model as modelA1
 import random
 
 
 def run_single_seed(args):
     params, seed = args
     random.seed(seed)
-    model = modelV4.Immunology_Model(**params, seed=seed)
+    model = modelA1.Immunology_Model(**params, seed=seed)
     # run model
     for _ in range(365):
         model.step()

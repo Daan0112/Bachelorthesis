@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import ABM_multrun_Active as multrun
-from ABM_variance_Active import calculate_scale_and_RMSE
+import modelB2_multrun as multrun
+from modelB2_variance import calculate_scale_and_RMSE
 
 def plot_model_vs_data(medians, low_iqr, high_iqr, params, saving=False):
     """

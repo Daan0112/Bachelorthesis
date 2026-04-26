@@ -1,4 +1,4 @@
-import ABM_multrun_Active as multrun
+import modelB1_multrun as multrun
 import numpy as np
 
 def run_check(custom_params):

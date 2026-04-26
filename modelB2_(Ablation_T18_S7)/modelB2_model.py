@@ -106,8 +106,8 @@ class Immunology_Model(mesa.Model):
                  f_TCM = 0.05,      # FIXED
                  f_TEM = 0.06,      # FIXED
                  f_TEMRA = 0.02,    # FIXED
-                 t_peak = 14,       # FIXED
-                 sigma = 5,         # FIXED
+                 t_peak = 18,       # FIXED
+                 sigma = 7,         # FIXED
                  q = 0.25,          # FIXED
                  alpha_peak = 0.01, # FREE [0.01-0.3]
                  b_MPEC = 1,        # FREE [1-5]
