@@ -4,6 +4,8 @@ import math
 
 def gaussian_pulse(model):
     return model.alpha_peak * math.exp( -0.5 * (( model.steps - model.t_peak ) / model.sigma)**2)
+def gaussian_pulse_previous_step(model):
+    return model.alpha_peak * math.exp( -0.5 * (( model.steps - 1 - model.t_peak ) / model.sigma)**2)
 
 class CD4Cell(mesa.Agent):
     def __init__(self, model, cell_type = 'Naive'):
@@ -59,26 +61,27 @@ class CD4Cell(mesa.Agent):
 
     # Age the T-cell and handle transitions or death
     def death_age(self):
+        contraction = self.model.cc * max(0, gaussian_pulse_previous_step(self.model) - gaussian_pulse(self.model))
         # Death based on cell type
         if self.cell_type == "Naive" and random.random() < self.model.mu_N:
             self.model.counts["Naive"] -= 1
             self.remove()
-        elif self.cell_type == "TSCM" and random.random() < self.model.mu_TSCM:
+        elif self.cell_type == "TSCM" and random.random() < self.model.mu_TSCM + contraction:
             self.model.counts["TSCM"] -= 1
             self.remove()
-        elif self.cell_type == "TCM" and random.random() < self.model.mu_TCM:
+        elif self.cell_type == "TCM" and random.random() < self.model.mu_TCM + contraction:
             self.model.counts["TCM"] -= 1
             self.remove()
-        elif self.cell_type == "TEMRA" and random.random() < self.model.mu_TEMRA:
+        elif self.cell_type == "TEMRA" and random.random() < self.model.mu_TEMRA + contraction:
             self.model.counts["TEMRA"] -= 1
             self.remove()
-        elif self.cell_type == "TEM" and random.random() < self.model.mu_TEM:
+        elif self.cell_type == "TEM" and random.random() < self.model.mu_TEM + contraction:
             self.model.counts["TEM"] -= 1
             self.remove()
-        elif self.cell_type == "SLEC" and random.random() < self.model.mu_SLEC:
+        elif self.cell_type == "SLEC" and random.random() < self.model.mu_SLEC + contraction:
             self.model.counts["SLEC"] -= 1
             self.remove()
-        elif self.cell_type == "MPEC" and random.random() < self.model.mu_MPEC:
+        elif self.cell_type == "MPEC" and random.random() < self.model.mu_MPEC + contraction:
             self.model.counts["MPEC"] -= 1
             self.remove()
 
@@ -112,8 +115,9 @@ class Immunology_Model(mesa.Model):
                  alpha_peak = 0.01, # FREE [0.01-0.3]
                  b_MPEC = 1,        # FREE [1-5]
                  b_SLEC = 1,        # FIXED to b_MPEC
-                 K_mem = 999_999,        # FREE [50-500]
+                 K_mem = 50,        # FREE [50-500]
                  S_CD4=500,         # FREE [500-10000]
+                 cc = 0.5,           # FIXED
                  seed = None):      # Mesa has an internal seed which can't be selected with the python seed.
         super().__init__(rng=seed)
         self.mu_N = mu_N
@@ -135,6 +139,7 @@ class Immunology_Model(mesa.Model):
         self.b_SLEC = b_SLEC
         self.K_mem = K_mem
         self.S_CD4 = S_CD4
+        self.cc = cc
 
         self.counts = {
             "Naive": S_CD4, "TSCM": 0, "TCM": 0, "TEM": 0,

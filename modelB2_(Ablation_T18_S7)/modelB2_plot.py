@@ -10,7 +10,8 @@ def plot_model_vs_data(medians, low_iqr, high_iqr, params, saving=False):
     # 1. Extract measure points to find the optimal scaling factor
     # This ensures the plot matches the calibration logic [cite: 111, 265]
     measure_points = multrun.measure_points(medians)
-    s_factor, _ = calculate_scale_and_RMSE(measure_points)
+    s_factor, rmse = calculate_scale_and_RMSE(measure_points)
+    print(f'RMSE = {rmse}')
     
     # 2. Configuration for CD4 Subsets
     subsets = ["%TSCM", "%TCM", "%TEMRA"]

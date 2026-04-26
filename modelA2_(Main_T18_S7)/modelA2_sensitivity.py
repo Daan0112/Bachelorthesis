@@ -10,7 +10,7 @@ def evaluate_rmse(params):
     """
     Runs the model with a given set of parameters and returns the RMSE.
     """
-    data = multrun.multrun(params,num_seeds=50) 
+    data = multrun.multrun(params,num_seeds=250) 
     medians = multrun.calculate_multrun_medians(data)
     measured = multrun.measure_points(medians)
     
@@ -105,7 +105,7 @@ if __name__ == "__main__":
 
     params = {
         "alpha_peak": 0.01, "b_MPEC": 1, "K_mem": 50,
-        "S_CD4": 500, "q": 0.1, "mu_N": 0.0003,
+        "S_CD4": 500, "q": 0.25, "mu_N": 0.0003,
         "mu_TSCM": 0.0002, "mu_TCM": 0.004, "mu_TEM": 0.01,
         "mu_TEMRA": 0.02, "mu_MPEC": 0.02, "mu_SLEC": 0.05,
         "f_TSCM": 0.03, "f_TCM": 0.05, "f_TEM": 0.06,

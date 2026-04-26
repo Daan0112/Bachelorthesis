@@ -112,7 +112,7 @@ class Immunology_Model(mesa.Model):
                  alpha_peak = 0.01, # FREE [0.01-0.3]
                  b_MPEC = 1,        # FREE [1-5]
                  b_SLEC = 1,        # FIXED to b_MPEC
-                 K_mem = 50,        # FREE [50-500]
+                 K_mem = 999_999,        # FREE [50-500]
                  S_CD4=500,         # FREE [500-10000]
                  seed = None):      # Mesa has an internal seed which can't be selected with the python seed.
         super().__init__(rng=seed)

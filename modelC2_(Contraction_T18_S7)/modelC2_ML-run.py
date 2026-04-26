@@ -1,5 +1,5 @@
-import ABM_multrun_Active as multrun
-from ABM_variance_Active import calculate_scale_and_RMSE
+import modelC2_multrun as multrun
+from modelC2_variance import calculate_scale_and_RMSE
 import optuna
 
 def objective(trial):
@@ -8,6 +8,7 @@ def objective(trial):
     b_MPEC = trial.suggest_int("b_MPEC",1,3) # 4,5
     K_mem = trial.suggest_int("K_mem",50,500)
     S_CD4 = trial.suggest_int("S_CD4",500,10000)
+    cc = trial.suggest_float("cc",0.5,5)
     # FIXED parameters
     q = 0.25  # Result from HPC
     mu_N = 0.0003
@@ -43,7 +44,8 @@ def objective(trial):
         "S_CD4": S_CD4,
         "alpha_peak": alpha_peak,
         "t_peak": t_peak,
-        "sigma": sigma
+        "sigma": sigma,
+        "cc": cc
     }
     data = multrun.multrun(params, num_seeds=250)
     medians = multrun.calculate_multrun_medians(data)
@@ -53,8 +55,8 @@ def objective(trial):
 
 # 4. Start the "Machine Learning" Search
 study = optuna.create_study(
-    study_name="yellowfever_250seeds_q25",
-    storage="sqlite:///yellowfever_250seeds_q25.db",
+    study_name="yellowfever_250seeds_q25_contraction",
+    storage="sqlite:///yellowfever_250seeds_q25_contraction.db",
     load_if_exists=True,
     direction="minimize"
 )
