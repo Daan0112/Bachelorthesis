@@ -2,7 +2,7 @@ import optuna
 import modelB1_plot as plotter
 import modelB1_multrun as multrun
 
-study = optuna.load_study(study_name="yellowfever_250seeds_q25", storage="sqlite:///yellowfever_250seeds_q25_t14s5_ablation.db")
+study = optuna.load_study(study_name="yellowfever_250seeds_q25_t14s5_ablation", storage="sqlite:///yellowfever_250seeds_q25_t14s5_ablation.db")
 
 # Base params
 params = {

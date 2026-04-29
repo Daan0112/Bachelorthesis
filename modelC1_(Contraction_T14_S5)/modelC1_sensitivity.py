@@ -101,7 +101,7 @@ def plot_sensitivity(results, filename="sensitivity_plots.png"):
 
 
 if __name__ == "__main__":
-    study = optuna.load_study(study_name="yellowfever_250seeds_q25_t14s5", storage="sqlite:///yellowfever_250seeds_q25_t14s5.db")
+    study = optuna.load_study(study_name="yellowfever_250seeds_q25_t14s5_contraction", storage="sqlite:///yellowfever_250seeds_q25_t14s5_contraction.db")
 
     params = {
         "alpha_peak": 0.01, "b_MPEC": 1, "K_mem": 250,
@@ -125,4 +125,4 @@ if __name__ == "__main__":
         steps=11
     )
     
-    plot_sensitivity(sensitivity_data, filename="yellowfever_fit_sensitivity_q25_t14s5.png")
+    plot_sensitivity(sensitivity_data, filename="yellowfever_fit_sensitivity_q25_t14s5_contraction.png")

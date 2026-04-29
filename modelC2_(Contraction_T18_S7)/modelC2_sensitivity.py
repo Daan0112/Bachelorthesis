@@ -109,7 +109,7 @@ if __name__ == "__main__":
         "mu_TSCM": 0.0002, "mu_TCM": 0.004, "mu_TEM": 0.01,
         "mu_TEMRA": 0.02, "mu_MPEC": 0.02, "mu_SLEC": 0.05,
         "f_TSCM": 0.03, "f_TCM": 0.05, "f_TEM": 0.06,
-        "f_TEMRA": 0.02, "t_peak": 14, "sigma": 5, "cc": 0.5
+        "f_TEMRA": 0.02, "t_peak": 18, "sigma": 7, "cc": 0.5
     }
     
     params.update(study.best_params)

@@ -22,8 +22,8 @@ def objective(trial):
     f_TCM = 0.05
     f_TEM = 0.06
     f_TEMRA = 0.02
-    t_peak = 18
-    sigma = 7
+    t_peak = 14
+    sigma = 5
     b_SLEC = b_MPEC
     params = {
         "mu_N": mu_N,
